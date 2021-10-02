@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b9ad057-0a0e-4d97-b413-cf9ff4873cdc" name="Changes" comment="Project created">
+    <list default="true" id="6b9ad057-0a0e-4d97-b413-cf9ff4873cdc" name="Changes" comment="Connected to MongoDB Atlas, create helloworld app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,8 @@
       <workItem from="1631742290979" duration="327000" />
       <workItem from="1631819397085" duration="3148000" />
       <workItem from="1631824272350" duration="281000" />
-      <workItem from="1631824573624" duration="436000" />
+      <workItem from="1631824573624" duration="1593000" />
+      <workItem from="1631965912602" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="Project created">
       <created>1631742539255</created>
@@ -53,7 +51,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631742539255</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Connected to MongoDB Atlas, create helloworld app">
+      <created>1631825056711</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631825056711</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -73,6 +78,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project created" />
+    <MESSAGE value="Connected to MongoDB Atlas, create helloworld app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connected to MongoDB Atlas, create helloworld app" />
   </component>
 </project>
