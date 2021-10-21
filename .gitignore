@@ -1,4 +1,7 @@
+.gitignore
 /node_modules
-.idea/
+.idea/*
 vk_config.v2.json
 groups.json
+comments.json
+users.json
