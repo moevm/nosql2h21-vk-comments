@@ -3,16 +3,20 @@ import os
 import json
 from collections import deque
 import datetime as dt
+from tqdm import tqdm
 
 GROUPS_COUNT = 1
 POSTS_COUNT = 100
+
+_MAX_COUNT = 4
+
 groups_file = open("groups.json", "w")
 comments_file = open("comments.json", "w")
 users_file = open("users.json", "w")
 
 
 def add_user(user_id):
-    if user_id not in visited_users_id:
+    if users.get(user_id) is None:
         user = vk.users.get(user_ids=str(user_id), fields='city,home_town,bdate')[0]
         try:
             friends = vk.friends.get(user_id=user_id)["items"]
@@ -22,8 +26,8 @@ def add_user(user_id):
             else:
                 raise e
         try:
-            birthdate = dt.datetime.strptime(user["bdate"], "%d.%m.%Y").isoformat()+'Z'
-        except ValueError:
+            birthdate = dt.datetime.strptime(user["bdate"], "%d.%m.%Y").isoformat() + 'Z'
+        except (ValueError, KeyError):
             birthdate = None
         users[user_id] = {
             "_id": user_id,
@@ -34,17 +38,17 @@ def add_user(user_id):
         }
         if birthdate:
             users[user_id]["birthdate"] = birthdate
-        users_file.write(json.dumps(users[user_id])+'\n')
+        users_file.write(json.dumps(users[user_id]) + '\n')
 
 
 def add_comment(comment):
-    print(comment)
     from_id = comment["from_id"]
-    if from_id < 0:
-        return
-    if not users.get(from_id):
+    if users.get(from_id) is None:
         add_user(from_id)
-    likes = vk.likes.getList(type="comment", owner_id=comment["owner_id"], item_id=comment["id"])
+    if comment["likes"]["count"] > 0:
+        likes = vk.likes.getList(type="comment", owner_id=comment["owner_id"], item_id=comment["id"])["items"]
+    else:
+        likes = []
     db_comment = {
         "_id": comment["id"],
         "user": {
@@ -57,13 +61,29 @@ def add_comment(comment):
             "title": groups[-comment["owner_id"]]["title"]
         },
         "text": comment["text"],
-        "time": {"$date": dt.datetime.fromtimestamp(comment["date"]).isoformat()+'Z'},
-        "likes": likes["items"]
+        "time": {"$date": dt.datetime.fromtimestamp(comment["date"]).isoformat() + 'Z'},
+        "likes": likes
     }
-    if len(groups_deque) + visited_groups_len < GROUPS_COUNT:
+    if len(groups_deque) + visited_groups_count < GROUPS_COUNT:
         current_user_groups_ids = vk.groups.get()["items"]
-        groups_deque.extend(current_user_groups_ids)
-    comments_file.write(json.dumps(db_comment)+'\n')
+        groups_deque.extendleft(current_user_groups_ids)
+    comments_file.write(json.dumps(db_comment) + '\n')
+
+
+def proceed_comment(comment):
+    from_id = comment["from_id"]
+    if from_id <= 0 or comment.get("deleted", False):
+        return
+    add_comment(comment)
+    if comment.get("thread") and comment["thread"]["count"] > 0:
+        thread_comments = vk_api.VkTools(vk).get_all_iter("wall.getComments", max_count=_MAX_COUNT, values={
+            "owner_id": comment["owner_id"],
+            "post_id": comment["post_id"],
+            "comment_id": comment["id"],
+            "need_likes": 1
+        })
+        for tc in thread_comments:
+            proceed_comment(tc)
 
 
 def auth_handler():
@@ -89,40 +109,46 @@ current_user_groups_ids = vk.groups.get()["items"]
 groups_deque = deque()
 
 groups_deque.extendleft(current_user_groups_ids)
-
-visited_groups_id = set()
-visited_users_id = set()
-
-visited_groups_len = 0
+visited_groups_count = 0
 
 groups = {}
 comments = {}
 users = {}
 
-while visited_groups_len < GROUPS_COUNT:
-    current_group = groups_deque.pop()
-    if current_group in visited_groups_id:
-        continue
+with tqdm(total=GROUPS_COUNT) as groups_bar:
+    while visited_groups_count < GROUPS_COUNT:
+        current_group = groups_deque.pop()
+        if groups.get(current_group) is not None:
+            continue
 
-    group = vk.groups.getById(group_id=current_group, fields='members_count')[0]
-    db_group = {
-        "_id": group["id"],
-        "title": group["name"],
-        "users_count": group["members_count"]
-    }
-    groups[group["id"]] = db_group
+        group = vk.groups.getById(group_id=current_group, fields='members_count')[0]
+        db_group = {
+            "_id": group["id"],
+            "title": group["name"],
+            "users_count": group["members_count"]
+        }
+        groups[group["id"]] = db_group
 
-    #TODO: limits and offset
-    posts = vk.wall.get(owner_id=-current_group)
-    for post in posts["items"]:
-        comments = vk.wall.getComments(owner_id=-current_group, post_id=post["id"], need_likes=1)
-        for comment in comments["items"]:
-            add_comment(comment)
-            # break
-        break
+        posts = vk_api.VkTools(vk).get_all_iter('wall.get', max_count=_MAX_COUNT, values={
+            "owner_id": -current_group
+        }, limit=POSTS_COUNT)
 
-    json_group = json.dumps(db_group)+'\n'
-    groups_file.write(json_group)
+        with tqdm(total=POSTS_COUNT) as post_bar:
+            for post in posts:
 
-    visited_groups_len += 1
-    visited_groups_id.add(current_group)
+                comments = vk_api.VkTools(vk).get_all_iter('wall.getComments', max_count=_MAX_COUNT, values={
+                    "owner_id": -current_group,
+                    "post_id": post["id"],
+                    "need_likes": 1
+                })
+
+                for comment in tqdm(comments):
+                    proceed_comment(comment)
+
+                post_bar.update(1)
+
+        json_group = json.dumps(db_group) + '\n'
+        groups_file.write(json_group)
+
+        visited_groups_count += 1
+        groups_bar.update(1)
