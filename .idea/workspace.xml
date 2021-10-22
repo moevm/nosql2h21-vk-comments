@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b9ad057-0a0e-4d97-b413-cf9ff4873cdc" name="Changes" comment="Connected to MongoDB Atlas, create helloworld app">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vk_dump.py" beforeDir="false" afterPath="$PROJECT_DIR$/vk_dump.py" afterDir="false" />
     </list>

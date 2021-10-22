@@ -25,19 +25,29 @@ def add_user(user_id):
                 friends = []
             else:
                 raise e
-        try:
-            birthdate = dt.datetime.strptime(user["bdate"], "%d.%m.%Y").isoformat() + 'Z'
-        except (ValueError, KeyError):
-            birthdate = None
+
         users[user_id] = {
             "_id": user_id,
             "first_name": user["first_name"],
             "last_name": user["last_name"],
-            "town": user.get("city") or user.get("home_town"),
             "friends": friends
         }
+
+        try:
+            birthdate = dt.datetime.strptime(user["bdate"], "%d.%m.%Y").isoformat() + 'Z'
+        except (ValueError, KeyError):
+            birthdate = None
         if birthdate:
             users[user_id]["birthdate"] = birthdate
+
+        town = None
+        if user.get("city"):
+            town = user["city"]["title"]
+        elif user.get("home_town"):
+            town = user.get("home_town")
+        if town:
+            users[user_id]["town"] = town
+
         users_file.write(json.dumps(users[user_id]) + '\n')
 
 
