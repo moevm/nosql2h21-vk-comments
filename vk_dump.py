@@ -5,7 +5,7 @@ from collections import deque
 import datetime as dt
 from tqdm import tqdm
 
-GROUPS_COUNT = 1
+GROUPS_COUNT = 100
 POSTS_COUNT = 100
 
 _MAX_COUNT = 4
@@ -18,10 +18,11 @@ users_file = open("users.json", "w")
 def add_user(user_id):
     if users.get(user_id) is None:
         user = vk.users.get(user_ids=str(user_id), fields='city,home_town,bdate')[0]
+
         try:
             friends = vk.friends.get(user_id=user_id)["items"]
         except vk_api.ApiError as e:
-            if e.code == 30:
+            if e.code == 30 or e.code == 18:
                 friends = []
             else:
                 raise e
@@ -60,7 +61,7 @@ def add_comment(comment):
     else:
         likes = []
     db_comment = {
-        "_id": comment["id"],
+        "_id": int(str(from_id) + str(comment["id"])),
         "user": {
             "_id": from_id,
             "first_name": users[from_id]["first_name"],
@@ -75,8 +76,11 @@ def add_comment(comment):
         "likes": likes
     }
     if len(groups_deque) + visited_groups_count < GROUPS_COUNT:
-        current_user_groups_ids = vk.groups.get()["items"]
-        groups_deque.extendleft(current_user_groups_ids)
+        try:
+            current_user_groups_ids = vk.groups.get(user_id=from_id)["items"]
+            groups_deque.extendleft(current_user_groups_ids)
+        except:
+            pass
     comments_file.write(json.dumps(db_comment) + '\n')
 
 
@@ -116,9 +120,10 @@ print('Authorisation ended')
 vk = vk_session.get_api()
 
 current_user_groups_ids = vk.groups.get()["items"]
+
 groups_deque = deque()
 
-groups_deque.extendleft(current_user_groups_ids)
+groups_deque.extendleft([current_user_groups_ids])
 visited_groups_count = 0
 
 groups = {}
@@ -152,7 +157,7 @@ with tqdm(total=GROUPS_COUNT) as groups_bar:
                     "need_likes": 1
                 })
 
-                for comment in tqdm(comments):
+                for comment in comments:
                     proceed_comment(comment)
 
                 post_bar.update(1)
