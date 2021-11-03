@@ -6,6 +6,7 @@ const UserShortSchema = new Schema(
         first_name: String,
         last_name: String,
     },
+    {versionKey: false},
 );
 
 module.exports = UserShortSchema

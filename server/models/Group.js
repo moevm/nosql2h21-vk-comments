@@ -6,6 +6,8 @@ const GroupSchema = new Schema(
         _id: Number,
         title: String,
         users_count: Number
+    },{
+        versionKey: false
     },
 );
 

@@ -9,9 +9,10 @@ const CommentSchema = new Schema(
         user: UserShortSchema,
         group: GroupShortSchema,
         text: String,
-        time: {Date},
+        time: Date,
         likes: [Number]
     },
+    {versionKey: false},
 );
 
 const Comment = mongoose.model('Comment', CommentSchema);

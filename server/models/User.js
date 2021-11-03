@@ -10,6 +10,7 @@ const UserSchema = new Schema(
         birthdate: Date,
         friends: [Number]
     },
+    {versionKey: false},
 );
 
 const User = mongoose.model('User', UserSchema);
