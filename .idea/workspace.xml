@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b9ad057-0a0e-4d97-b413-cf9ff4873cdc" name="Changes" comment="Connected to MongoDB Atlas, create helloworld app">
+      <change afterPath="$PROJECT_DIR$/controller/DatabaseController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Comment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Group.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/GroupShort.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/UserShort.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CommentService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/GroupService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vk_dump.py" beforeDir="false" afterPath="$PROJECT_DIR$/vk_dump.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -37,7 +51,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Python.vk_dump">
+  <component name="RunManager" selected="Node.js.bin\www">
     <configuration name="vk_dump" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="nosql2h21-vk-comments" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -63,13 +77,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.vk_dump" />
+      <item itemvalue="Node.js.bin\www" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.vk_dump" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -85,6 +94,10 @@
       <workItem from="1631824272350" duration="281000" />
       <workItem from="1631824573624" duration="1593000" />
       <workItem from="1631965912602" duration="38000" />
+      <workItem from="1635536455401" duration="6269000" />
+      <workItem from="1635878759742" duration="8404000" />
+      <workItem from="1635940980153" duration="1416000" />
+      <workItem from="1635942420928" duration="5362000" />
     </task>
     <task id="LOCAL-00001" summary="Project created">
       <created>1631742539255</created>
