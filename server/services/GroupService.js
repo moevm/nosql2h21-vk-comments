@@ -78,8 +78,149 @@ function getGroups(params){
     })
 }
 
+function search(params){
+    let title = params.title ? params.title : ''
+    return new Promise(resolve => {
+        Group.aggregate([
+            {
+                $match: {
+                    title: {
+                        $regex: title,
+                        $options: 'i'
+                    }
+                }
+            },
+            {
+                $project: {
+                    users_count: 0
+                }
+            }
+        ]).exec((err, groups) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(groups);
+        })
+    })
+}
+
+function graph(group_id, params){
+    group_id = parseInt(group_id)
+    let text = params.text ? params.text : ''
+    let min_date = params.min_date ? params.min_date : '1900-01-01'
+    let max_date = params.max_date ? params.max_date : '3000-01-01'
+    let min_time = params.min_time ? params.min_time : '00:00:00'
+    let max_time = params.max_time ? params.max_time : '24:00:00'
+    return new Promise(resolve => {
+        Group.aggregate([
+            {
+                $match: {
+                    _id: group_id
+                }
+            },
+            {
+                $lookup: {
+                    from: "comments",
+                    localField: "_id",
+                    foreignField: "group._id",
+                    as: "comments"
+                }
+            },
+            {
+                $unwind: "$comments"
+            },
+            {
+                $project: {
+                    date: { $dateToString: { format: "%Y-%m-%d", date: "$comments.time" } },
+                    time: { $dateToString: { format: "%H:%M:%S", date: "$comments.time" } },
+                    text: "$comments.text"
+                }
+            },
+            {
+                $match: {
+                    text: {
+                        $regex: text,
+                        $options: 'i'
+                    },
+                    date: {
+                        $gte: min_date,
+                        $lte: max_date
+                    },
+                    time: {
+                        $gte: min_time,
+                        $lte: max_time
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$date",
+                    count_comments: {$sum: 1}
+                }
+            },
+            {
+                $sort: {
+                    _id: 1
+                }
+            }
+        ]).exec((err, groups) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(groups);
+        })
+    })
+}
+
+function commentators(group_id, limit){
+    group_id = parseInt(group_id)
+    limit = parseInt(limit)
+    return new Promise(resolve => {
+        Group.aggregate([
+            {
+                $match: {
+                    _id: group_id
+                }
+            },
+            {
+                $lookup: {
+                    from: "comments",
+                    localField: "_id",
+                    foreignField: "group._id",
+                    as: "comments"
+                }
+            },
+            {
+                $unwind: "$comments"
+            },
+            {
+                $group: {
+                    _id: "$comments.user",
+                    count_comments: {$sum: 1}
+                }
+            },
+            {
+                $sort: {
+                    count_comments: -1
+                }
+            },
+            {
+                $limit: limit
+            }
+        ]).exec((err, commentators) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(commentators);
+        })
+    })
+}
+
 module.exports = {
     importGroups: importGroups,
     getGroups: getGroups,
-    exportGroups: exportGroups
+    exportGroups: exportGroups,
+    search: search,
+    graph: graph,
+    commentators: commentators
 };
