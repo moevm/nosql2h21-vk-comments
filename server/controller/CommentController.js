@@ -7,4 +7,9 @@ router.get('/search/:groupId', async (req, res) => {
     res.json(comments)
 })
 
+router.get('/likers/:commentId', async (req, res) => {
+    let likers = await CommentService.likers(req.params.commentId)
+    res.json(likers)
+})
+
 module.exports = router;
