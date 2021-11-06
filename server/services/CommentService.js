@@ -1,4 +1,5 @@
 const Comment = require("../models/Comment");
+const Group = require("../models/Group");
 
 function importComments(comments){
     return new Promise( (resolve, reject) => {
@@ -88,8 +89,58 @@ function getComments(params){
     })
 }
 
+function search(group_id, text){
+    group_id = parseInt(group_id)
+    text = text ? text : ''
+    return new Promise(resolve => {
+        Group.aggregate([
+            {
+                $match: {
+                    _id: group_id
+                }
+            },
+            {
+                $lookup: {
+                    from: "comments",
+                    localField: "_id",
+                    foreignField: "group._id",
+                    as: "comments"
+                }
+            },
+            {
+                $unwind: "$comments"
+            },
+            {
+                $project: {
+                    _id: 0,
+                    user: "$comments.user",
+                    comment_id: "$comments._id",
+                    text: "$comments.text",
+                    date: { $dateToString: { format: "%Y-%m-%d", date: "$comments.time" } },
+                    time: { $dateToString: { format: "%H:%M:%S", date: "$comments.time" } },
+                    likes_count: {$size: "$comments.likes"}
+                }
+            },
+            {
+                $match: {
+                    text: {
+                        $regex: text,
+                        $options: 'i'
+                    }
+                }
+            }
+        ]).exec((err, groups) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(groups);
+        })
+    })
+}
+
 module.exports = {
     importComments: importComments,
     exportComments: exportComments,
-    getComments: getComments
+    getComments: getComments,
+    search: search
 };
