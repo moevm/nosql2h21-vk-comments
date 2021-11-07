@@ -1,0 +1,44 @@
+td{
+    height: 50px;
+}
+
+td{
+    vertical-align: middle;
+}
+
+table, th, td {
+    border: 1px solid #c6c5c5;
+    border-collapse: collapse;
+}
+
+thead td{
+    border: none;
+}
+
+thead tr{
+    background-color: rgba(207, 207, 207, 1);
+    border-radius: 10px 0 0 0;
+}
+
+.surname_td{
+    width: 220px;
+}
+
+.city_td{
+    width: 280px;
+    padding-left: 20px;
+}
+
+.age_td{
+    width: 70px;
+    text-align: center;
+}
+
+.name_td{
+    width: 180px;
+    padding-left: 20px;
+}
+
+.surname_td{
+    padding-left: 20px;
+}

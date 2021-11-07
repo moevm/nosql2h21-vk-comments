@@ -1,1 +1,129 @@
-.DebugUsers {}
+.loading{
+    margin-top: 10vh;
+    font-size: 18pt;
+    font-family: Roboto, sans-serif;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.table_wrap{
+    max-height: 50vh;
+    overflow: auto;
+    margin-right: 50px;
+    background-color: white;
+
+}
+
+.table_wrap::-webkit-scrollbar {
+    width: 10px;               /* ширина scrollbar */
+}
+.table_wrap::-webkit-scrollbar-track {
+    background: #dafad9;        /* цвет дорожки */
+}
+.table_wrap::-webkit-scrollbar-thumb {
+    background-color: #fefeff;    /* цвет плашки */
+    border-radius: 5px;       /* закругления плашки */
+    border: 1px solid rgba(136, 134, 134, 0.62);  /* padding вокруг плашки */
+}
+
+.filter_col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter_title, .age_title{
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px 0;
+    text-align: center;
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+}
+
+.filter_title{
+    width: 250px;
+}
+
+.age_title{
+    width: 150px;
+    margin-top: 30px;
+}
+
+.fio_row input{
+    font-size: 12pt;
+    font-family: Roboto, sans-serif;
+    height: 32px;
+    width: 180px;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding-left: 15px;
+    border: 1px solid black;
+}
+
+.surname_input{
+    margin-right: 20px;
+}
+
+.age_row{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.age_row span{
+    display: inline-block;
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    height: 32px;
+    width: 60px;
+    border-radius: 5px;
+    background-color: white;
+    padding: 2px 0;
+    margin-right: 10px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+}
+
+.age_row input{
+    font-size: 12pt;
+    font-family: Roboto, sans-serif;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+    text-align: center;
+}
+
+.age_from{
+    margin-right: 30px;
+}
+
+.city_input{
+    font-size: 12pt;
+    font-family: Roboto, sans-serif;
+    margin-top: 30px;
+    height: 30px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 15px;
+}
+
+.filter_col button{
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    margin-top: 70px;
+    height: 40px;
+    width: 150px;
+    border-radius: 15px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+    text-align: center;
+}
