@@ -1,0 +1,32 @@
+.title{
+    font-size: 18pt;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px 0;
+    width: 350px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    border: 1px solid black;
+}
+
+.button_row{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button{
+    width: 150px;
+    padding: 5px 0;
+    background-color: white;
+    border-radius: 8px;
+    margin: 0 10px;
+    border: 1px solid transparent
+}
+
+button:hover{
+    background-color: #efeded;
+    border: 1px solid #a5a5a5;
+}
