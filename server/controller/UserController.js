@@ -8,4 +8,9 @@ router.get('/comments/:userId', async (req, res) => {
     res.json(comments)
 })
 
+router.get('/friends/:userId', async (req, res) => {
+    let friends = await UserService.friends(req.params.userId)
+    res.json(friends)
+})
+
 module.exports = router;

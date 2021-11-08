@@ -118,10 +118,63 @@ function comments(userId) {
     })
 }
 
+function friends(userId){
+    userId = parseInt(userId)
+    return new Promise(resolve => {
+        User.aggregate([
+            {
+                $match: {
+                    _id: userId
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "friends",
+                    foreignField: "_id",
+                    as: "friend"
+                }
+            },
+            {
+                $project: {
+                    friend: 1
+                }
+            },
+            {
+                $unwind: "$friend"
+            },
+            {
+                $project: {
+                    friends: {
+                        _id: "$friend._id",
+                        first_name: "$friend.first_name",
+                        last_name: "$friend.last_name",
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$_id",
+                    friends: {
+                        $push: "$friends"
+                    }
+                }
+            }
+        ]).exec((err, friends) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(friends)
+
+        })
+    })
+}
+
 
 module.exports = {
     importUsers: importUsers,
     exportUsers: exportUsers,
     getUsers: getUsers,
-    comments: comments
+    comments: comments,
+    friends: friends
 };
