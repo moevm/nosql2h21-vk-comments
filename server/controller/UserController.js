@@ -18,4 +18,9 @@ router.get('/commentators/:userId', async (req, res) => {
     res.json(commentators)
 })
 
+router.get('/statistic/:userId', async (req, res) => {
+    let statistic = await UserService.statistic(req.params.userId)
+    res.json(statistic)
+})
+
 module.exports = router;

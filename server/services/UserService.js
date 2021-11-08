@@ -231,6 +231,44 @@ function commentators(userId){
     })
 }
 
+function statistic(userId){
+    userId = parseInt(userId)
+    return new Promise(resolve => {
+        Comment.aggregate([
+            {
+                $project: {
+                    user_id: "$user._id",
+                    likes: {$size: "$likes"}
+                }
+            },
+            {
+                $match: {
+                    user_id: userId
+                }
+            },
+            {
+                $group: {
+                    _id: "$user_id",
+                    likes: {$push: "$likes"},
+                    count_likes: {$sum: "$likes"},
+                }
+            },
+            {
+                $project: {
+                    count_likes: 1,
+                    count_comments: {$size: "$likes"},
+                }
+            }
+        ]).exec((err, statistic) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(statistic)
+
+        })
+    })
+}
+
 
 module.exports = {
     importUsers: importUsers,
@@ -238,5 +276,6 @@ module.exports = {
     getUsers: getUsers,
     comments: comments,
     friends: friends,
-    commentators: commentators
+    commentators: commentators,
+    statistic: statistic
 };
