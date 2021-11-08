@@ -11,6 +11,7 @@ var databaseRouter = require('./controller/DatabaseController');
 var debugRouter = require('./controller/DebugController');
 var groupRouter = require('./controller/GroupController');
 var commentRouter = require('./controller/CommentController');
+var userRouter = require('./controller/UserController');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/db', databaseRouter);
 app.use('/debug', debugRouter);
 app.use('/group', groupRouter);
 app.use('/comment', commentRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

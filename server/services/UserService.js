@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Comment = require("../models/Comment");
+
 
 function importUsers(users){
     return new Promise((resolve, reject) => {
@@ -82,8 +84,44 @@ function getUsers(params) {
     })
 }
 
+function comments(userId) {
+    userId = parseInt(userId)
+    return new Promise(resolve => {
+        Comment.aggregate([
+            {
+                $project: {
+                    user_id: "$user._id",
+                    group: 1,
+                    date: {$dateToString: {format: "%Y-%m-%d", date: "$time"}},
+                    time: {$dateToString: {format: "%H:%M:%S", date: "$time"}},
+                    text: 1,
+                    likes_count: {$size: "$likes"},
+                }
+            },
+            {
+                $match: {
+                    user_id: userId
+                }
+            },
+            {
+                $project: {
+                    user_id: 0
+                }
+            }
+        ]).exec((err, comments) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(comments)
+
+        })
+    })
+}
+
+
 module.exports = {
     importUsers: importUsers,
     exportUsers: exportUsers,
-    getUsers: getUsers
+    getUsers: getUsers,
+    comments: comments
 };
