@@ -2,12 +2,12 @@ const express = require("express");
 const GroupService = require("../services/GroupService");
 const router = express.Router();
 
-router.get('/search', async (req, res) => {
+router.post('/search', async (req, res) => {
     let groups = await GroupService.search(req.body)
     res.json(groups)
 })
 
-router.get('/graph/:groupId', async (req, res) => {
+router.post('/graph/:groupId', async (req, res) => {
     let statistic = await GroupService.graph(req.params.groupId, req.body)
     res.json(statistic)
 })

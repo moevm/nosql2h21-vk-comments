@@ -145,19 +145,9 @@ function friends(userId){
             },
             {
                 $project: {
-                    friends: {
-                        _id: "$friend._id",
-                        first_name: "$friend.first_name",
-                        last_name: "$friend.last_name",
-                    }
-                }
-            },
-            {
-                $group: {
-                    _id: "$_id",
-                    friends: {
-                        $push: "$friends"
-                    }
+                    _id: "$friend._id",
+                    first_name: "$friend.first_name",
+                    last_name: "$friend.last_name",
                 }
             }
         ]).exec((err, friends) => {
@@ -170,11 +160,83 @@ function friends(userId){
     })
 }
 
+function commentators(userId){
+    userId = parseInt(userId)
+    return new Promise(resolve => {
+        Comment.aggregate([
+            {
+                $project: {
+                    user_id: "$user._id",
+                    group_id: "$group._id"
+                }
+            },
+            {
+                $match: {
+                    user_id: userId
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        user_id: "$user_id",
+                        group_id: "$group_id"
+                    }
+                }
+            },
+            {
+                $lookup: {
+                    from: "comments",
+                    localField: "_id.group_id",
+                    foreignField: "group._id",
+                    as: "comments"
+                }
+            },
+            {
+                $unwind: "$comments"
+            },
+            {
+                $group: {
+                    _id: "$_id.user_id",
+                    commentators: {
+                        $push: "$comments.user"
+                    }
+                }
+            },
+            {
+                $unwind: "$commentators"
+            },
+            {
+                $group: {
+                    _id: {
+                        _id: "$commentators._id",
+                        first_name: "$commentators.first_name",
+                        last_name: "$commentators.last_name"
+                    }
+                }
+            },
+            {
+                $project: {
+                    _id: "$_id._id",
+                    first_name: "$_id.first_name",
+                    last_name: "$_id.last_name"
+                }
+            }
+        ]).exec((err, commentators) => {
+            if (err)
+                console.error(err)
+            else
+                resolve(commentators)
+
+        })
+    })
+}
+
 
 module.exports = {
     importUsers: importUsers,
     exportUsers: exportUsers,
     getUsers: getUsers,
     comments: comments,
-    friends: friends
+    friends: friends,
+    commentators: commentators
 };
