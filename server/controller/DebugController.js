@@ -14,7 +14,7 @@ router.get('/comments', async (req, res) => {
     res.json(comments)
 })
 
-router.get('/users', async (req, res) => {
+router.post('/users', async (req, res) => {
     let users = await UserService.getUsers(req.body)
     res.json(users)
 })
