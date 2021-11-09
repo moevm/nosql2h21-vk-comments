@@ -1,0 +1,51 @@
+td{
+    height: 50px;
+}
+
+td{
+    vertical-align: middle;
+}
+
+table, th, td {
+    border: 1px solid #c6c5c5;
+    border-collapse: collapse;
+}
+
+thead td{
+    border: none;
+}
+
+thead tr{
+    background-color: rgba(207, 207, 207, 1);
+    border-radius: 10px 0 0 0;
+}
+
+.name_td{
+    width: 150px;
+    padding-left: 20px;
+}
+
+.surname_td{
+    padding-left: 20px;
+    width: 170px;
+}
+
+.comment_td{
+    max-width: 200px;
+    padding: 0 5px 0 10px;
+}
+
+.time_td{
+    width: 120px;
+    text-align: center;
+}
+
+.date_td{
+    width: 120px;
+    text-align: center;
+}
+
+.likes_count_td{
+    width: 100px;
+    text-align: center;
+}

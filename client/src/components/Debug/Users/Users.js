@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './DebugUsers.css';
-import DebugUsersTable from '../DebugUsersTable/DebugUsersTable'
+import styles from './Users.module.css';
+import DebugUsersTable from './Table/Table'
 
 import axios from 'axios';
 
-class DebugUsers extends React.Component
+class Users extends React.Component
 {
     constructor(props){
         super(props);
@@ -71,33 +71,33 @@ class DebugUsers extends React.Component
     }
 
     render(){
-        if (this.state.isLoading) return (<><span className="loading">Загрузка. Подождите...</span></>);
+        if (this.state.isLoading) return (<><span className={styles.loading}>Загрузка. Подождите...</span></>);
 
         return(
             <>
-                <div className="title"> Пользователи </div>
-                <div className="row">
-                    <div className="table_wrap">
+                <div className={styles.title}> Пользователи </div>
+                <div className={styles.row}>
+                    <div className={styles.table_wrap}>
                         <DebugUsersTable users={this.state.users}></DebugUsersTable>
                     </div>
 
-                    <div className="filter_col">
-                        <span className="filter_title">Фильтр отображения</span>
-                        <div className="fio_row">
-                            <input type="text" className="surname_input" placeholder="Фамилия" onChange={this.set_surname}/>
-                            <input type="text" className="name_input" placeholder="Имя" onChange={this.set_name}/>
+                    <div className={styles.filter_col}>
+                        <span className={styles.filter_title}>Фильтр отображения</span>
+                        <div className={styles.fio_row}>
+                            <input type="text" className={styles.surname_input} placeholder="Фамилия" onChange={this.set_surname}/>
+                            <input type="text" className={styles.name_input} placeholder="Имя" onChange={this.set_name}/>
                         </div>
 
-                        <span className="age_title">Возраст</span>
-                        <div className="age_row">
+                        <span className={styles.age_title}>Возраст</span>
+                        <div className={styles.age_row}>
                             <span>От</span>
-                            <input type="number" className="age_from" onChange={this.set_age_from}/>
+                            <input type="number" className={styles.age_from} onChange={this.set_age_from}/>
                             <span>До</span>
-                            <input type="number" className="age_to" onChange={this.set_age_to}/>
+                            <input type="number" className={styles.age_to} onChange={this.set_age_to}/>
                         </div>
-                        <input type="text" className="city_input" placeholder="Город" onChange={this.set_city}/>
+                        <input type="text" className={styles.city_input} placeholder="Город" onChange={this.set_city}/>
 
-                        <button onClick={this.filter_records}>Применить</button>
+                        <button className={styles.button} onClick={this.filter_records}>Применить</button>
                     </div>
                 </div>
             </>
@@ -105,4 +105,4 @@ class DebugUsers extends React.Component
     }
 }
 
-export default DebugUsers;
+export default Users;

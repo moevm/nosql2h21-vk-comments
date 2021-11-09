@@ -4,6 +4,18 @@
     font-family: Roboto, sans-serif;
 }
 
+.title{
+    font-size: 18pt;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px 0;
+    width: 350px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    border: 1px solid black;
+}
+
 .row{
     display: flex;
     flex-direction: row;
@@ -118,7 +130,7 @@
     padding-left: 15px;
 }
 
-.filter_col button{
+.button{
     font-size: 14pt;
     font-family: Roboto, sans-serif;
     margin-top: 70px;
@@ -126,5 +138,11 @@
     width: 150px;
     border-radius: 15px;
     border: 1px solid rgba(119, 118, 118, 0.62);
+    background-color: white;
     text-align: center;
+}
+
+.button:hover{
+    background-color: #efeded;
+    border: 1px solid #a5a5a5;
 }
