@@ -7,6 +7,7 @@ class Debug extends React.Component {
         super(props);
         this.toUsers.bind(this);
         this.toComments.bind(this);
+        this.toGroups.bind(this);
     }
 
     toUsers = () => {
@@ -18,6 +19,10 @@ class Debug extends React.Component {
         window.location.assign('http://localhost:3000/debug/comments');
     }
 
+    toGroups = () => {
+        window.location.assign('http://localhost:3000/debug/groups');
+    }
+
     render() {
         return(
         <>
@@ -25,7 +30,7 @@ class Debug extends React.Component {
             <div className={styles.button_row}>
                 <button className={styles.button} onClick={this.toUsers}>Пользователи</button>
                 <button className={styles.button} onClick={this.toComments}>Комментарии</button>
-                <button className={styles.button}>Группы</button>
+                <button className={styles.button} onClick={this.toGroups}>Группы</button>
             </div>
         </>
         )

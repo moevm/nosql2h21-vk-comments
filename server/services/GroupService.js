@@ -31,10 +31,10 @@ function exportGroups() {
 
 function getGroups(params){
     let title = params.title ? params.title : ''
-    let min_users_count = params.min_users_count ? params.min_users_count : Number.MIN_VALUE
-    let max_users_count = params.max_users_count ? params.max_users_count : Number.MAX_VALUE
-    let min_comments_count = params.min_comments_count ? params.min_comments_count : Number.MIN_VALUE
-    let max_comments_count = params.max_comments_count ? params.max_comments_count : Number.MAX_VALUE
+    let min_users_count = params.min_users_count ? parseInt(params.min_users_count) : Number.MIN_VALUE
+    let max_users_count = params.max_users_count ? parseInt(params.max_users_count) : Number.MAX_VALUE
+    let min_comments_count = params.min_comments_count ? parseInt(params.min_comments_count) : Number.MIN_VALUE
+    let max_comments_count = params.max_comments_count ? parseInt(params.max_comments_count) : Number.MAX_VALUE
     return new Promise(resolve => {
         Group.aggregate([
             {

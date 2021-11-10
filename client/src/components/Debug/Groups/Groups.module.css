@@ -1,0 +1,137 @@
+.loading{
+    margin-top: 10vh;
+    font-size: 18pt;
+    font-family: Roboto, sans-serif;
+}
+
+.title{
+    font-size: 18pt;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px 0;
+    width: 350px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    border: 1px solid black;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.table_wrap{
+    max-height: 60vh;
+    overflow: auto;
+    margin-right: 50px;
+    background-color: white;
+
+}
+
+.table_wrap::-webkit-scrollbar {
+    width: 10px;               /* ширина scrollbar */
+}
+.table_wrap::-webkit-scrollbar-track {
+    background: #dafad9;        /* цвет дорожки */
+}
+.table_wrap::-webkit-scrollbar-thumb {
+    background-color: #fefeff;    /* цвет плашки */
+    border-radius: 5px;       /* закругления плашки */
+    border: 1px solid rgba(136, 134, 134, 0.62);  /* padding вокруг плашки */
+}
+
+.filter_col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter_title, .users_count_title, .comments_count_title{
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px 0;
+    text-align: center;
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+}
+
+.filter_title{
+    width: 250px;
+}
+
+.users_count_title{
+    width: 300px;
+    margin-top: 30px;
+}
+
+.comments_count_title{
+    width: 300px;
+    margin-top: 30px;
+}
+
+.users_from, .comments_from{
+    margin-right: 20px;
+}
+
+.age_row{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.age_row span{
+    display: inline-block;
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    height: 32px;
+    width: 60px;
+    border-radius: 5px;
+    background-color: white;
+    padding: 2px 0;
+    margin-right: 10px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+}
+
+.age_row input{
+    font-size: 12pt;
+    font-family: Roboto, sans-serif;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+    text-align: center;
+}
+
+.group_input{
+    font-size: 12pt;
+    font-family: Roboto, sans-serif;
+    margin-top: 20px;
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 15px;
+}
+
+.button{
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    margin-top: 50px;
+    height: 40px;
+    width: 150px;
+    border-radius: 15px;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+    background-color: white;
+    text-align: center;
+}
+
+.button:hover{
+    background-color: #efeded;
+    border: 1px solid #a5a5a5;
+}
