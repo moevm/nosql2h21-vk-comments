@@ -1,0 +1,73 @@
+.loading{
+    margin-top: 10vh;
+    font-size: 18pt;
+    font-family: Roboto, sans-serif;
+}
+
+.row{
+    margin-top: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input{
+    width: 300px;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.search_button{
+    width: 100px;
+    padding: 5px 0;
+    background-color: white;
+    border-radius: 8px;
+    margin-left: 40px;
+    border: 1px solid transparent
+}
+
+.export_button{
+    width: 300px;
+    padding: 5px 0;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid transparent
+}
+
+.export_button{
+    margin-top: 10px;
+}
+
+.input_import {
+    margin-top: 80px;
+}
+.input_import::-webkit-file-upload-button {
+    visibility: hidden;
+    padding-left: 50px;
+}
+.input_import::before {
+    content: 'Импорт базы данных';
+    width: 300px;
+    color: black;
+    padding: 5px 0;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    outline: none;
+    white-space: nowrap;
+    display: inline-block;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+.input_import:hover::before {
+    background-color: #efeded;
+    border: 1px solid #a5a5a5;
+}
+
+.export_button:hover, .search_button:hover{
+    background-color: #efeded;
+    border: 1px solid #a5a5a5;
+}
