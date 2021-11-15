@@ -22,11 +22,14 @@ thead tr{
 
 .surname_td{
     width: 220px;
+    padding-left: 20px;
+    overflow-x: auto;
 }
 
 .city_td{
     width: 280px;
     padding-left: 20px;
+    overflow-x: auto;
 }
 
 .age_td{
@@ -37,8 +40,5 @@ thead tr{
 .name_td{
     width: 180px;
     padding-left: 20px;
-}
-
-.surname_td{
-    padding-left: 20px;
+    overflow-x: auto;
 }

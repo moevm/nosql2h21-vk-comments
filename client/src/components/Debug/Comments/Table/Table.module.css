@@ -23,16 +23,19 @@ thead tr{
 .name_td{
     width: 150px;
     padding-left: 20px;
+    overflow-x: auto;
 }
 
 .surname_td{
     padding-left: 20px;
     width: 170px;
+    overflow-x: auto;
 }
 
 .comment_td{
     max-width: 200px;
     padding: 0 5px 0 10px;
+    overflow-x: auto;
 }
 
 .time_td{
