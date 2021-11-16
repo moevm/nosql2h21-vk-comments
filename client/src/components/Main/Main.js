@@ -21,15 +21,7 @@ class Main extends React.Component{
     }
 
     find_group = (event) => {
-        axios({
-            method: 'post',
-            url: 'http://localhost:3001/group/search',
-            data: {title: this.state.group}
-        }).then(res => {
-                console.log(res);
-            }
-        );
-        // window.location.assign("http://localhost:3001/group")
+        window.location.assign(`http://localhost:3000/groups?search=${this.state.group}`);
     }
 
     import_db = (event) => {

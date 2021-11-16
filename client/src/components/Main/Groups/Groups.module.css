@@ -1,0 +1,43 @@
+.loading{
+    margin-top: 10vh;
+    font-size: 18pt;
+    font-family: Roboto, sans-serif;
+}
+
+.table_wrap{
+    max-height: 60vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-right: 50px;
+    background-color: white;
+    margin-top: 20vh;
+}
+
+td{
+    height: 50px;
+    vertical-align: middle;
+
+    width: 500px;
+    padding-left: 20px;
+    overflow-x: auto;
+    color: blue;
+}
+
+td span{
+    cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid #c6c5c5;
+    border-collapse: collapse;
+}
+
+thead td{
+    border: none;
+    color: black;
+}
+
+thead tr{
+    background-color: rgba(207, 207, 207, 1);
+    border-radius: 10px 0 0 0;
+}
