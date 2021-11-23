@@ -10,13 +10,13 @@ class Row extends React.Component{
     }
 
     toGroup = (event) => {
-        window.location.assign(`http://localhost:3000/group?search=${this.props.group._id}`);
+        window.location.assign(`http://localhost:3000/group?search=${this.props.group._id}&name=${this.props.group.title}`);
     }
 
     render = () => {
         return(
             <tr>
-                <td><span onClick={this.toGroup}>{this.props.group.title}</span></td>
+                <td className={styles.td}><span onClick={this.toGroup}>{this.props.group.title}</span></td>
             </tr>
         );
     }

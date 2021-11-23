@@ -13,7 +13,7 @@
     margin-top: 20vh;
 }
 
-td{
+.td{
     height: 50px;
     vertical-align: middle;
 
@@ -23,7 +23,7 @@ td{
     color: blue;
 }
 
-td span{
+.td span{
     cursor: pointer;
 }
 
@@ -32,7 +32,7 @@ table, th, td {
     border-collapse: collapse;
 }
 
-thead td{
+thead .td{
     border: none;
     color: black;
 }

@@ -1,10 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../Table.module.css'
+import styles from '../Table.module.css';
 
 class Row extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (nextProps.comment.last_name !== this.props.comment.last_name)
+            return true;
+        if (nextProps.comment.first_name !== this.props.comment.first_name)
+            return true;
+        if (nextProps.comment.text !== this.props.comment.text)
+            return true;
+        if (nextProps.comment.time !== this.props.comment.time)
+            return true;
+        if (nextProps.comment.date !== this.props.comment.date)
+            return true;
+        if (nextProps.comment.likes_count !== this.props.comment.likes_count)
+            return true;
+        return false;
     }
 
     render = () => {

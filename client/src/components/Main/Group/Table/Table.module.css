@@ -1,0 +1,22 @@
+.name_td{
+    width: 200px;
+    padding-left: 20px;
+    overflow-x: auto;
+    color: blue;
+}
+
+.name_td span{
+    cursor: pointer;
+}
+
+thead .name_td span, thead .comments_td span{
+    user-select: none;
+    cursor: auto;
+    color: black;
+}
+
+.comments_td{
+    width: 130px;
+    overflow-x: auto;
+    text-align: center;
+}

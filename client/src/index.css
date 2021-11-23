@@ -86,4 +86,5 @@ body{
     background: radial-gradient(rgba(0, 0, 0, 0.14)1px, rgba(216, 217, 219, 0.6) 2px);
     -webkit-background-size: 8px 8px;
     background-size: 8px 8px;
+    padding: 0 calc(20px - (100vw - 100%)) 0 0;
 }

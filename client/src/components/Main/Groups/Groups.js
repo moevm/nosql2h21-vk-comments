@@ -38,7 +38,7 @@ class Group extends React.Component {
             <div className={styles.table_wrap}>
                 <table className={styles.table}>
                     <thead>
-                        <tr><td>Группы</td></tr>
+                        <tr><td className={styles.td}>Группы</td></tr>
                     </thead>
                     <tbody>
                         {this.state.groups.map(group => <GroupRow key={group._id} group={group}></GroupRow>)}
