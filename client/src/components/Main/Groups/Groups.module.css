@@ -13,6 +13,18 @@
     margin-top: 20vh;
 }
 
+.table_wrap::-webkit-scrollbar {
+    width: 10px;               /* ширина scrollbar */
+}
+.table_wrap::-webkit-scrollbar-track {
+    background: #dafad9;        /* цвет дорожки */
+}
+.table_wrap::-webkit-scrollbar-thumb {
+    background-color: #fefeff;    /* цвет плашки */
+    border-radius: 5px;       /* закругления плашки */
+    border: 1px solid rgba(136, 134, 134, 0.62);  /* padding вокруг плашки */
+}
+
 .td{
     height: 50px;
     vertical-align: middle;
