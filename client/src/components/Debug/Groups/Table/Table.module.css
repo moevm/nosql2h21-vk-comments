@@ -23,14 +23,17 @@ thead tr{
 .name_td{
     width: 350px;
     padding: 0 5px 0 20px;
+    overflow-x: auto;
 }
 
 .user_td{
     max-width: 200px;
     text-align: center;
+    overflow-x: auto;
 }
 
 .comment_td{
     width: 200px;
     text-align: center;
+    overflow-x: auto;
 }
