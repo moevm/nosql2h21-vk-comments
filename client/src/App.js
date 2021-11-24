@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, useParams, useMatch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import Debug from "./components/Debug/Debug";
 import Main from "./components/Main/Main";
@@ -8,6 +8,7 @@ import DebugGroups from './components/Debug/Groups/Groups'
 import MainGroups from './components/Main/Groups/Groups'
 import MainGroup from './components/Main/Group/Group'
 import MainUser from './components/Main/User/User'
+import Phrase from './components/Main/Phrase/Phrase'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path='/groups' element={<MainGroups/>}/>
               <Route path='/group' element={<MainGroup/>}/>
               <Route path='/users/:userId' element={<MainUser/>}/>
+              <Route path='/phrase' element={<Phrase/>}/>
               <Route path='/' element={<Main/>}></Route>
           </Routes>
       </Router>
