@@ -17,7 +17,7 @@ class Table extends React.Component{
     }
 
     toUser = (event) => {
-        window.location.assign(`http://localhost:3000/user?id=${event}`);
+        window.location.assign(`http://localhost:3000/users/${event}`);
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {

@@ -1,0 +1,26 @@
+td{
+    height: 50px;
+}
+
+table {
+    width: 100%;
+}
+
+td{
+    vertical-align: middle;
+    padding: 0 5px 0 10px;
+}
+
+table, th, td {
+    border: 1px solid #c6c5c5;
+    border-collapse: collapse;
+}
+
+thead td{
+    border: none;
+}
+
+thead tr{
+    background-color: rgba(207, 207, 207, 1);
+    border-radius: 10px 0 0 0;
+}

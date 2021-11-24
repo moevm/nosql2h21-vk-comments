@@ -237,24 +237,26 @@ function statistic(userId){
         Comment.aggregate([
             {
                 $project: {
-                    user_id: "$user._id",
+                    user: 1,
                     likes: {$size: "$likes"}
                 }
             },
             {
                 $match: {
-                    user_id: userId
+                    "user._id": userId
                 }
             },
             {
                 $group: {
-                    _id: "$user_id",
+                    _id: "$user._id",
+                    user: {$first: "$user"},
                     likes: {$push: "$likes"},
                     count_likes: {$sum: "$likes"},
                 }
             },
             {
                 $project: {
+                    user: 1,
                     count_likes: 1,
                     count_comments: {$size: "$likes"},
                 }

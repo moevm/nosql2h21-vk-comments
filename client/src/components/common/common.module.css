@@ -1,0 +1,43 @@
+.title {
+    font-size: 18pt;
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px 40px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    border: 1px solid black;
+}
+
+.text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    font-size: 14pt;
+    font-family: Roboto, sans-serif;
+    border: 1px solid rgba(119, 118, 118, 0.62);
+    margin: 5px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.row {
+
+    display: flex;
+    flex-direction: row;
+}

@@ -1,1 +1,5 @@
 /.idea
+vk_config.v2.json
+vk_comments_dump.json
+server/node_modules
+client/node_modules
