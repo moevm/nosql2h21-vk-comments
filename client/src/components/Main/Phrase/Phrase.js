@@ -50,7 +50,10 @@ class Phrase extends React.Component {
                         { title: 'Время', key: row => row['time']},
                         { title: 'Дата', key: row => (new Date(row['date'])).toLocaleDateString()},
                         { title: 'Комментарии', style: {'max-width': '450px'}, key: row => row['text']},
-                        { title: 'Количество лайков', style: {'max-width': '100px'}, key: row => row['likes_count']}
+                        { title: 'Количество лайков', style: {'max-width': '100px'},
+                            key: row => row['likes_count'],
+                            link: row => `/comment/${row.comment_id}`
+                        }
                     ]} rows={this.state.comments}/>
                 </div>
             </div>

@@ -24,6 +24,10 @@
     margin-top: 50px;
 }
 
+.mt30 {
+    margin-top: 30px;
+}
+
 .mt10 {
     margin-top: 10px;
 }
@@ -36,6 +40,14 @@
     width: 50%;
 }
 
+.w100 {
+    width: 100%;
+}
+
+.h30px{
+    height: 30px;
+}
+
 .row {
 
     display: flex;
@@ -46,4 +58,10 @@
     display: inline-flex;
     justify-content: center;
     width: 100%;
+}
+
+.vcenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

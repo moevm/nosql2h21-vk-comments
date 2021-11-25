@@ -79,18 +79,26 @@ class User extends React.Component {
         if (this.state.isLoaded) {
             return (
                 <div>
-                    <div className={cs.title}>{this.state.userName}</div>
-                    <div className={cs.text}>Количество лайков: {this.state.likesCount}</div>
-                    <div className={cs.text}>Количество лайков / Количество комментариев: {this.state.likesByComments}</div>
+                    <div>
+                        <div className={cs.title}>{this.state.userName}</div>
+                        <div className={cs.text}>Количество лайков: {this.state.likesCount}</div>
+                        <div className={cs.text}>Количество лайков / Количество комментариев: {this.state.likesByComments}</div>
+                    </div>
 
                     <div className={[cs.text, cs.mt50].join(' ')}>Комментарии пользователя</div>
                     <div>
                         <Table headers={[
-                            { title: 'Название группы', style: {'max-width': '200px'}, key: row => row['group']['title']},
+                            { title: 'Название группы', style: {'max-width': '200px'},
+                                key: row => row['group']['title'],
+                                link: row => `/group?search=${row.group._id}&name=${row.group.title}`
+                            },
                             { title: 'Время', key: row => row['time']},
                             { title: 'Дата', key: row => (new Date(row['date'])).toLocaleDateString()},
                             { title: 'Комментарии', style: {'max-width': '300px'}, key: row => row['text']},
-                            { title: 'Количество лайков', style: {'max-width': '100px'}, key: row => row['likes_count']}
+                            { title: 'Количество лайков', style: {'max-width': '100px'},
+                                key: row => row['likes_count'],
+                                link: row => `/comment/${row._id}`
+                            }
                             ]} rows={this.state.comments}/>
                     </div>
                     <div className={[cs.row, cs.mt10].join(' ')}>

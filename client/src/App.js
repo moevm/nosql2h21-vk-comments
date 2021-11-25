@@ -9,6 +9,7 @@ import MainGroups from './components/Main/Groups/Groups'
 import MainGroup from './components/Main/Group/Group'
 import MainUser from './components/Main/User/User'
 import Phrase from './components/Main/Phrase/Phrase'
+import Comment from "./components/Main/Comment/Comment";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path='/group' element={<MainGroup/>}/>
               <Route path='/users/:userId' element={<MainUser/>}/>
               <Route path='/phrase' element={<Phrase/>}/>
+              <Route path='/comment/:commentId' element={<Comment/>}/>
               <Route path='/' element={<Main/>}></Route>
           </Routes>
       </Router>
