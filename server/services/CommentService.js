@@ -156,43 +156,22 @@ function likers(commentId){
                 }
             },
             {
-                $unwind: "$likers"
-            },
-            {
                 $project: {
                     user: 1,
                     text: 1,
                     date: { $dateToString: { format: "%Y-%m-%d", date: "$time" } },
                     time: { $dateToString: { format: "%H:%M:%S", date: "$time" } },
                     likers: {
-                        _id: "$likers._id",
-                        first_name: "$likers.first_name",
-                        last_name: "$likers.last_name"
+                        $map: {
+                            input: "$likers",
+                            as: "liker",
+                            in: {
+                                _id: "$$liker._id",
+                                first_name: "$$liker.first_name",
+                                last_name: "$$liker.last_name"
+                            }
+                        }
                     }
-                }
-            },
-            {
-                $group: {
-                    _id: {
-                        _id: "$_id",
-                        user: "$user",
-                        text: "$text",
-                        date: "$date",
-                        time: "$time"
-                    },
-                    likers: {
-                        $push: "$likers"
-                    }
-                }
-            },
-            {
-                $project: {
-                    _id: "$_id._id",
-                    user: "$_id.user",
-                    text: "$_id.text",
-                    date: "$_id.date",
-                    time: "$_id.time",
-                    likers: 1
                 }
             }
         ]).exec((err, likers) => {
