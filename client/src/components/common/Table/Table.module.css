@@ -1,14 +1,16 @@
-td{
-    height: 50px;
-}
-
 table {
     width: 100%;
 }
 
 td{
+    height: 50px;
     vertical-align: middle;
     padding: 0 5px 0 10px;
+    overflow-x: auto;
+}
+
+td a{
+    text-decoration: none;
 }
 
 table, th, td {
