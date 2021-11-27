@@ -1,12 +1,5 @@
-.row{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 100px;
-}
-
-.user, .time, .date, .comment {
-    margin-right: 20px;
+.title, .text, .table_title {
+    margin-top: 20px;
     font-size: 14pt;
     background-color: white;
     border-radius: 8px;
@@ -17,17 +10,29 @@
     text-decoration: none;
 }
 
-.comment{
-    max-width: 80%;
-    margin-top: 20px;
-    font-size: 14pt;
-    border: 1px solid #b5b5b5;
-    overflow-x: auto;
+.text{
+    margin-top: 10px;
+}
+
+.table_title{
+    margin-top: 30px;
 }
 
 .table_wrap {
     overflow-y: auto;
     background-color: white;
-    margin-top: 80px;
+    margin-top: 10px;
     border-radius: 3px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.friends_table{
+    margin-right: 30px;
+    height: fit-content;
 }

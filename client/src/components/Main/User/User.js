@@ -1,7 +1,7 @@
 import React from 'react';
 import withRouter from "../../../utils/withRouter";
 import axios from "axios";
-import cs from "../../common/common.module.css"
+import styles from "./User.module.css"
 import Table from "../../common/Table/Table";
 
 class User extends React.Component {
@@ -78,51 +78,51 @@ class User extends React.Component {
     render() {
         if (this.state.isLoaded) {
             return (
-                <div>
-                    <div>
-                        <div className={cs.title}>{this.state.userName}</div>
-                        <div className={cs.text}>Количество лайков: {this.state.likesCount}</div>
-                        <div className={cs.text}>Количество лайков / Количество комментариев: {this.state.likesByComments}</div>
-                    </div>
+                <>
+                    <div className={styles.title}>{this.state.userName}</div>
+                    <div className={styles.text}>Количество лайков: {this.state.likesCount}</div>
+                    <div className={styles.text}>Количество лайков / Количество комментариев: {this.state.likesByComments}</div>
 
-                    <div className={[cs.text, cs.mt50].join(' ')}>Комментарии пользователя</div>
-                    <div>
+                    <div className={styles.table_title}>Комментарии пользователя</div>
+                    <div className={styles.table_wrap}>
                         <Table headers={[
-                            { title: 'Название группы', style: {'max-width': '200px'},
+                            { title: 'Название группы', style: {'max-width': '250px'},
                                 key: row => row['group']['title'],
                                 link: row => `/group?search=${row.group._id}&name=${row.group.title}`
                             },
-                            { title: 'Время', key: row => row['time']},
-                            { title: 'Дата', key: row => (new Date(row['date'])).toLocaleDateString()},
-                            { title: 'Комментарии', style: {'max-width': '300px'}, key: row => row['text']},
-                            { title: 'Количество лайков', style: {'max-width': '100px'},
+                            { title: 'Время', style: {'width': '100px', 'text-align': 'center', 'padding': '0'}, key: row => row['time']},
+                            { title: 'Дата', style: {'width': '120px', 'text-align': 'center', 'padding': '0'}, key: row => (new Date(row['date'])).toLocaleDateString()},
+                            { title: 'Комментарии', style: {'max-width': '500px'}, key: row => row['text']},
+                            { title: 'Количество лайков', style: {'max-width': '120px', 'text-align': 'center', 'padding': '0'},
                                 key: row => row['likes_count'],
                                 link: row => `/comment/${row._id}`
                             }
                             ]} rows={this.state.comments}/>
                     </div>
-                    <div className={[cs.row, cs.mt10].join(' ')}>
-                        <div className={[cs.w50, cs.mr10].join(' ')}>
+                    <div className={styles.row}>
+                        <div className={[styles.table_wrap, styles.friends_table].join(' ')}>
                             <Table headers={[
                                 {
                                     title: 'Друзья',
+                                    style: {'padding': '0 10px 0 10px'},
                                     key: row => row['first_name'] + ' ' + row['last_name'],
                                     link: row => `/users/${row['_id']}`
                                 }
                             ]} rows={this.state.friends}/>
                         </div>
 
-                        <div className={cs.w50}>
+                        <div className={styles.table_wrap}>
                             <Table headers={[
                                 {
                                     title: 'Связи по комментариям в одних группах',
+                                    style: {'padding': '0 10px 0 10px'},
                                     key: row => row['first_name'] + ' ' + row['last_name'],
                                     link: row => `/users/${row['_id']}`
                                 }
                             ]} rows={this.state.commentators}/>
                         </div>
                     </div>
-                </div>
+                </>
             )
         } else {
             return (<></>)

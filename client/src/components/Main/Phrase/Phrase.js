@@ -45,10 +45,10 @@ class Phrase extends React.Component {
                     <Table headers={[
                         { title: 'Имя комментатора', style: {'max-width': '250px'}, key: row => row.user.first_name
                                 + ' ' + row.user.last_name, link: row => `/users/${row.user['_id']}`},
-                        { title: 'Время', style: {'width': '82px'}, key: row => row['time']},
-                        { title: 'Дата', key: row => (new Date(row['date'])).toLocaleDateString()},
-                        { title: 'Комментарии', style: {'max-width': '450px'}, key: row => row['text']},
-                        { title: 'Количество лайков', style: {'max-width': '110px'},
+                        { title: 'Время', style: {'width': '90px', 'text-align': 'center', 'padding': '0'}, key: row => row['time']},
+                        { title: 'Дата', style: {'width': '110px', 'text-align': 'center', 'padding': '0'}, key: row => (new Date(row['date'])).toLocaleDateString()},
+                        { title: 'Комментарии', style: {'max-width': '650px'}, key: row => row['text']},
+                        { title: 'Количество лайков', style: {'width': '90px', 'text-align': 'center', 'padding': '0 10px'},
                             key: row => row['likes_count'],
                             link: row => `/comment/${row.comment_id}`
                         }
