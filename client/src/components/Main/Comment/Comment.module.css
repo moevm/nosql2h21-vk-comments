@@ -1,0 +1,32 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 100px;
+}
+
+.user, .time, .date, .comment {
+    margin-right: 20px;
+    font-size: 14pt;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1px 40px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
+.comment{
+    max-width: 80%;
+    margin-top: 20px;
+    font-size: 14pt;
+    border: 1px solid #b5b5b5;
+    overflow-x: auto;
+}
+
+.table_wrap {
+    overflow-y: auto;
+    background-color: white;
+    margin-top: 80px;
+}

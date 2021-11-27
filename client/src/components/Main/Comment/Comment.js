@@ -1,7 +1,7 @@
 import React from 'react';
 import withRouter from "../../../utils/withRouter";
 import axios from "axios";
-import cs from "../../common/common.module.css"
+import styles from './Comment.module.css'
 import Table from "../../common/Table/Table";
 
 class Comment extends React.Component {
@@ -47,22 +47,16 @@ class Comment extends React.Component {
     render() {
         if (this.state.isLoaded) {
             return (
-                <div className={cs.w100}>
-                    <div className={cs.center}>
-                        <a className={cs.title} href={`/users/${this.state.userId}`}>{this.state.userName}</a>
-                        <div className={[cs.vcenter, cs.mt30].join(' ')}>
-                            <div className={[cs.text, cs.h30px].join(' ')}>{this.state.date}</div>
-                        </div>
-                        <div className={[cs.vcenter, cs.mt30].join(' ')}>
-                            <div className={[cs.text, cs.h30px].join(' ')}>{this.state.time}</div>
-                        </div>
+                <>
+                    <div className={styles.row}>
+                        <a className={styles.user} href={`/users/${this.state.userId}`}>{this.state.userName}</a>
+                        <div className={styles.time}>{this.state.time.substring(0, 5)}</div>
+                        <div className={styles.date}>{this.state.date}</div>
                     </div>
-                    <div className={cs.center}>
-                        <div className={[cs.text, cs.w50].join(' ')}>
-                            {this.state.text}
-                        </div>
+                    <div className={styles.comment}>
+                        {this.state.text}
                     </div>
-                    <div className={cs.center}>
+                    <div className={styles.table_wrap}>
                         <Table headers={[
                             {
                                 title: 'Комментарий понравился пользователям',
@@ -71,7 +65,7 @@ class Comment extends React.Component {
                             }
                         ]} rows={this.state.likers}/>
                     </div>
-                </div>
+                </>
             )
         }
         else {
